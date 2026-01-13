@@ -16,17 +16,7 @@ st.set_page_config(
 # =========================
 # Chargement du modèle compressé (.xz)
 # =========================
-model_path = "model.sav.xz"
-
-try:
-    with lzma.open(model_path, 'rb') as f:
-        model = pickle.load(f)
-except FileNotFoundError:
-    st.error(f"Le fichier modèle '{model_path}' est introuvable.")
-    st.stop()
-except Exception as e:
-    st.error(f"Erreur lors du chargement du modèle : {e}")
-    st.stop()
+model = pickle.load(open('model.sav', 'rb'))
 
 # =========================
 # Sidebar
