@@ -16,7 +16,7 @@ st.set_page_config(
 # =========================
 # Chargement du modèle compressé (.xz)
 # =========================
-model = pickle.load(open('model.sav', 'rb'))
+
 
 # =========================
 # Sidebar
@@ -45,14 +45,14 @@ with col1:
     taille = st.number_input("Taille (cm)", min_value=140, max_value=210, value=170)
 
 with col2:
-    genre = st.selectbox("Sexe", ["Femme", "Homme"])
+    sexe = st.selectbox("Genre", ["Femme", "Homme"])
     niveau_activite = st.selectbox(
         "Niveau d'activité",
         ["Sédentaire", "Modéré", "Actif"]
     )
 
 # Encodage des variables
-sexe_enc = 0 if genre == "Femme" else 1
+sexe_enc = 0 if sexe == "Femme" else 1
 niveau_enc = {"Sédentaire": 0, "Modéré": 1, "Actif": 2}[niveau_activite]
 
 poids_actuel = st.number_input(
@@ -68,7 +68,7 @@ if st.button("Calculer mon poids idéal"):
     df_input = pd.DataFrame([{
         "age": age,
         "taille": taille,
-        "genre": sexe_enc,
+        "sexe": sexe_enc,
         "niveau_activite": niveau_enc
     }])
 
