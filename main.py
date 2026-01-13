@@ -52,7 +52,7 @@ with col2:
     )
 
 # Encodage des variables
-sexe_enc = 0 if sexe == "Femme" else 1
+sexe_enc = 0 if genre == "Femme" else 1
 niveau_enc = {"Sédentaire": 0, "Modéré": 1, "Actif": 2}[niveau_activite]
 
 poids_actuel = st.number_input(
@@ -68,7 +68,7 @@ if st.button("Calculer mon poids idéal"):
     df_input = pd.DataFrame([{
         "age": age,
         "taille": taille,
-        "sexe": sexe_enc,
+        "genre": sexe_enc,
         "niveau_activite": niveau_enc
     }])
 
