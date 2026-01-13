@@ -16,7 +16,17 @@ st.set_page_config(
 # =========================
 # Chargement du modèle compressé (.xz)
 # =========================
+model_path = "model.sav.xz"
 
+try:
+    with lzma.open(model_path, 'rb') as f:
+        model = pickle.load(f)
+except FileNotFoundError:
+    st.error(f"Le fichier modèle '{model_path}' est introuvable.")
+    st.stop()
+except Exception as e:
+    st.error(f"Erreur lors du chargement du modèle : {e}")
+    st.stop()
 
 # =========================
 # Sidebar
@@ -45,7 +55,7 @@ with col1:
     taille = st.number_input("Taille (cm)", min_value=140, max_value=210, value=170)
 
 with col2:
-    sexe = st.selectbox("Genre", ["Femme", "Homme"])
+    sexe = st.selectbox("Sexe", ["Femme", "Homme"])
     niveau_activite = st.selectbox(
         "Niveau d'activité",
         ["Sédentaire", "Modéré", "Actif"]
