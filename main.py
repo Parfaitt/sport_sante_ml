@@ -45,7 +45,7 @@ with col1:
     taille = st.number_input("Taille (cm)", min_value=140, max_value=210, value=170)
 
 with col2:
-    sexe = st.selectbox("Sexe", ["Femme", "Homme"])
+    genre = st.selectbox("Sexe", ["Femme", "Homme"])
     niveau_activite = st.selectbox(
         "Niveau d'activité",
         ["Sédentaire", "Modéré", "Actif"]
